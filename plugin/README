@@ -1,0 +1,12 @@
+- by default plugin is triggered if message is plugin class name
+- this can be changed by 'cmd ary|string|regexp'
+- if message is for bot then 'to_bot' method is called
+- on messages 'on_msg' method is called
+- 'bot' method returns bot object
+- 'msg' method returns msg object
+- cfg returns configuration object
+- cfg.save saves the configuration object persistently
+- if you need main loop to wake up, register need as 'MBot.sleep.for :your_identifier, seconds' 
+- bot.clr takes arbitrary amount of arguments, symbol for colour :green, 'poop', :YeLLowOnMagenta, 'foop', colour is reset after next string argument
+- use 'io' to register new IO in main select loop
+- your global and scope constants will be undefined on unload, this means that if script1 loads something which script2 also loads, when script1 is unloaded script2 cannot see the constant either anymore. I don't expect this to be a problem, as scripts should be relatively simple. But if it is, it's easy to fix, just make the 'unload' methods less strict.
