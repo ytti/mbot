@@ -25,5 +25,16 @@ def main
   MBot.new.loop
 end
 
-main
+begin
+  main
+rescue => e
+  open (ENV['HOME'] + '/mbot.crash'), 'w' do |file|
+    file.puts '-' * 50
+    file.puts Time.now.utc
+    file.puts e.message + ' [' + e.class.to_s + ']'
+    file.puts '-' * 50
+    file.puts e.backtrace
+    file.puts '-' * 50
+  end
+end
 #asapi
