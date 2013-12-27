@@ -12,7 +12,7 @@ module MBot
 
     def privmsg msg, dst=nil
       dst ||= @message.src
-      send_cmd 'PRIVMSG', dst, msg
+      MBot.queue.add dst, msg
     end
     alias :msg :privmsg
 

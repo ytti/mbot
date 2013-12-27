@@ -20,11 +20,13 @@ module MBot
       @pm  = PluginManager.new
       @im  = IOManager.new @pm
       @bot = Bot.new self
+      MBot.queue.bot = @bot
     end
 
     def loop 
       begin
         _loop do
+          MBot.queue.serve
           ios, _, _ = select @im.io, nil, nil, MBot.sleep.to_i
           on_io ios if ios
           on_loop

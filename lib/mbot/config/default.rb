@@ -8,6 +8,6 @@ module MBot
     FILE         = 'config'
   end
   class << self
-    attr_accessor :sleep, :plugin
+    attr_accessor :sleep, :queue, :plugin
   end
 end

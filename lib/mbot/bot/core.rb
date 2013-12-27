@@ -57,13 +57,14 @@ module MBot
       end if CFG.plugin and CFG.plugin[:load].respond_to? :each
     end
 
-    private
 
     def send_cmd cmd, dst, data=nil
       return if Log.missing_arg cmd, dst
       data = data ? ' :' + data : ''
       @n.write "%s %s%s" % [cmd, dst, data]
     end
+
+    private
 
     def cmd_privmsg user, dst, data
       if dst == CFG.bot[:nick]
