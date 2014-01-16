@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = 'mbot'
-  s.version           = '0.5.3'
+  s.version           = '0.5.4'
   s.platform          = Gem::Platform::RUBY
   s.authors           = [ 'Saku Ytti' ]
   s.email             = %w( saku@ytti.fi )
