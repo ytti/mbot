@@ -19,6 +19,7 @@ module MBot
     end
 
     def serve
+      sleep = nil
       taildrop
       while @tokens>0 and msg=dequeue
         @tokens -= 1
@@ -27,10 +28,10 @@ module MBot
 
       if Time.now>@next_token and @tokens<MAX_BUCKET
         @tokens += 1
+        sleep = INTER_MESSAGE_GAP
         @next_token = Time.now + INTER_MESSAGE_GAP
       end
 
-      sleep = @queue.size == 0 ? nil : INTER_MESSAGE_GAP
       MBot.sleep.for :queue, sleep
     end
    
