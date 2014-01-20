@@ -19,20 +19,21 @@ module MBot
     end
 
     def serve
-      sleep = nil
       taildrop
       while @tokens>0 and msg=dequeue
         @tokens -= 1
         @bot.send_cmd 'PRIVMSG', msg[:target], msg[:msg]
       end
 
-      if Time.now>@next_token and @tokens<MAX_BUCKET
+      if @tokens<MAX_BUCKET and Time.now>@next_token
         @tokens += 1
-        sleep = INTER_MESSAGE_GAP
         @next_token = Time.now + INTER_MESSAGE_GAP
+        if @tokens < MAX_BUCKET
+          MBot.sleep.for :queue, INTER_MESSAGE_GAP
+        else
+          MBot.sleep.for :queue, nil
+        end
       end
-
-      MBot.sleep.for :queue, sleep
     end
    
     def dequeue
