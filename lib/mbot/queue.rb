@@ -6,6 +6,7 @@ module MBot
 
   class Queue
     attr_accessor :bot
+    attr_reader :tokens
     def initialize bot=nil
       @bot        = bot
       @queue      = Hash.new{|h,k|h[k]=[]}

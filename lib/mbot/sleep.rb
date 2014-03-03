@@ -14,6 +14,6 @@ module MBot
       f = @req.sort_by { |k,v| v }.first
       f ? f.last : CFG.sleep
     end
-    alias_method :to_i, to_f
+    alias_method :to_i, :to_f
   end
 end

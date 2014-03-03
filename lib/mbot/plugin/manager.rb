@@ -23,7 +23,7 @@ module MBot
       rescue Exception => e
         status = [:rescue, file]
         Log.error "#{plugin}: #{e.backtrace}"
-        raise ## for plugin debugging
+        #raise ## for plugin debugging
       end
       status
     end
