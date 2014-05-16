@@ -1,8 +1,8 @@
 module MBot
 
-  MAX_BUCKET        = 6.0  # How many messages to burst
+  MAX_BUCKET        = 5.0  # How many messages to burst
   MAX_QUEUE         = 20   # How long until queue overflows
-  INTER_MESSAGE_GAP = 1.2  # How long to wait between sending messages
+  INTER_MESSAGE_GAP = 2.1  # How long to wait between sending messages
 
   class Queue
     attr_accessor :bot
@@ -30,7 +30,7 @@ module MBot
         @tokens += 1
         @next_token = Time.now + INTER_MESSAGE_GAP
         if @tokens < MAX_BUCKET
-          MBot.sleep.for :queue, INTER_MESSAGE_GAP+0.1
+          MBot.sleep.for :queue, INTER_MESSAGE_GAP
         else
           MBot.sleep.for :queue, nil
         end
