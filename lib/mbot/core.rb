@@ -27,7 +27,7 @@ module MBot
       begin
         _loop do
           MBot.queue.serve
-          ios, _, _ = select @im.io, nil, nil, MBot.sleep.to_f
+          ios, _, _ = select @im.io, nil, nil, MBot.sleep.to_i
           on_io ios if ios
           on_loop
         end
