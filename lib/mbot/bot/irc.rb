@@ -6,6 +6,12 @@ module MBot
       send_cmd 'PONG', '', server
     end
 
+    def event_376
+      CFG.channel.each do |channel|
+        join channel.split
+      end if CFG.channel.respond_to? :each
+    end
+
     def join channel, key=nil
       send_cmd 'JOIN', [channel, key.to_s].join(' ')
     end

@@ -36,6 +36,7 @@ module MBot
     end
 
     def on_cmd cmd, src, dst, data
+      cmd = "event_#{cmd}" if cmd=~/^[0-9]+$/
       case cmd.to_sym
       when :PING
         pong data
@@ -43,15 +44,14 @@ module MBot
         cmd_privmsg User.new(src), dst, data
       when :NOTICE
         # i'll get to it
+      when :event_376
+        event_376
       else
         Log.debug "unsupported: #{cmd}, #{src}, #{dst}, #{data}"
       end
     end
 
     def init
-      CFG.channel.each do |channel|
-        join channel.split
-      end if CFG.channel.respond_to? :each
       CFG.plugin[:load].each do |plugin|
         load plugin
       end if CFG.plugin and CFG.plugin[:load].respond_to? :each
