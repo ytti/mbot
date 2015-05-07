@@ -13,6 +13,7 @@ module MBot
     end
 
     def write data
+      Log.debug "sending: #{data}"
       @n.write data + "\n"
     end
 
