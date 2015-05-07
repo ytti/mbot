@@ -10,10 +10,9 @@ module MBot
     :host => 'ytti.fi',
   }
   CFG.bot = {
-    :nick    => 'mbot42',
-    :user    => 'mbot',
-    :name    => 'mbot',
-    :control => '#control_msgs',
+    :nick => 'mbot42',
+    :user => 'mbot',
+    :name => 'mbot',
   }
   CFG.channel = [
     '&mbot1 withpw',
